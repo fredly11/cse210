@@ -1,9 +1,9 @@
 class ScriptureReference
 {
-    public string Book { get; }
-    public int StartChapter { get; }
-    public int StartVerse { get; }
-    public int? EndVerse { get; }
+    private string _book { get; }
+    private int _startChapter { get; }
+    private int _startVerse { get; }
+    private int? _endVerse { get; }
 
     public ScriptureReference(string reference)
     {
@@ -14,23 +14,23 @@ class ScriptureReference
         if (index == -1 || index == 0)
             throw new ArgumentException("Invalid scripture format.");
 
-        Book = string.Join(" ", parts.Take(index));
+        _book = string.Join(" ", parts.Take(index));
 
         string[] verseParts = parts[index].Split('-');
 
         string[] startParts = verseParts[0].Split(':');
-        StartChapter = int.Parse(startParts[0]);
-        StartVerse = int.Parse(startParts[1]);
+        _startChapter = int.Parse(startParts[0]);
+        _startVerse = int.Parse(startParts[1]);
 
         if (verseParts.Length > 1)
-            EndVerse = int.Parse(verseParts[1]);
+            _endVerse = int.Parse(verseParts[1]);
     }
 
     public override string ToString()
     {
-        return EndVerse.HasValue
-            ? $"{Book} {StartChapter}:{StartVerse}-{EndVerse}"
-            : $"{Book} {StartChapter}:{StartVerse}";
+        return _endVerse.HasValue
+            ? $"{_book} {_startChapter}:{_startVerse}-{_endVerse}"
+            : $"{_book} {_startChapter}:{_startVerse}";
     }
 }
 

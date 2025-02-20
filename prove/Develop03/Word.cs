@@ -1,11 +1,11 @@
 class Word
 {
-    public string Text { get; }
+    private string _text { get; }
     public bool IsHidden { get; private set; }
 
     public Word(string text)
     {
-        Text = text;
+        _text = text;
         IsHidden = false;
     }
 
@@ -16,6 +16,6 @@ class Word
 
     public override string ToString()
     {
-        return IsHidden ? "_____" : Text;
+        return IsHidden ? "_____" : _text;
     }
 }

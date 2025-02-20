@@ -1,18 +1,18 @@
 class Scripture
 {
-    public ScriptureReference Reference { get; }
-    private List<Word> Words { get; }
+    private ScriptureReference _reference { get; }
+    private List<Word> _words { get; }
 
     public Scripture(ScriptureReference reference, string text)
     {
-        Reference = reference;
-        Words = text.Split(' ').Select(word => new Word(word)).ToList();
+        _reference = reference;
+        _words = text.Split(' ').Select(word => new Word(word)).ToList();
     }
 
     public void HideWords(int count)
     {
         Random random = new Random();
-        List<Word> visibleWords = Words.Where(w => !w.IsHidden).ToList();
+        List<Word> visibleWords = _words.Where(w => !w.IsHidden).ToList();
         
         if (visibleWords.Count == 0) return;
 
@@ -26,11 +26,11 @@ class Scripture
 
     public bool AllWordsHidden()
     {
-        return Words.All(w => w.IsHidden);
+        return _words.All(w => w.IsHidden);
     }
 
     public string Display()
     {
-        return $"{Reference}\n{string.Join(" ", Words)}";
+        return $"{_reference}\n{string.Join(" ", _words)}";
     }
 }
