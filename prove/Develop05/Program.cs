@@ -4,7 +4,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-//For creativity, I added in the ability to level up based on your points.
+//For creativity, I added in the ability to level up based on your points. I used JSON serialization for saving and loading progress
 class Program
 {
     private static List<Goal> _goals = new List<Goal>();
